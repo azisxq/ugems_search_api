@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    web_api:
+        build: .
+        ports:
+            - "6870:6870"
+        environment:
+            - POSTGRES_HOST=10.87.0.2
+            - POSTGRES_PORT=5432
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASS=P%40ssw0rd9901
+            - POSTGRES_DB=dashboard-dev
+            - SOLR_URL=https://solr.ugems.id/solr/
+            - SOLR_CORE=ugems_test
+            - SERVICE_PORT=6870
+        volumes:
+            - /etc/hosts:/etc/hosts
