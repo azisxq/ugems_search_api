@@ -1,4 +1,4 @@
-from Modules.routes import app
+from app.Modules.routes import app
 import os
 
 service_port = os.environ['SERVICE_PORT']

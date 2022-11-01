@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
-from Modules.common import utils
-from Modules.methods import *
+from app.Modules.common import utils
+from app.Modules.methods import *
 import pysolr
 import os
 
@@ -50,6 +50,7 @@ def search():
 		result_dict = {}
 		result_dict['title'] = result['title'][0]
 		result_dict['content'] = result['content'][0]
+		result_dict['read_role'] = result['read_role'][0]
 		res.append(result_dict)
 	return jsonify({
 		'number of results': len(results),
