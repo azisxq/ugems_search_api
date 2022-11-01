@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
-from app.Modules.common import utils
-from app.Modules.methods import *
+from Modules.common import utils
+from Modules.methods import *
 import pysolr
 import os
 

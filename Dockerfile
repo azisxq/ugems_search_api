@@ -1,6 +1,12 @@
 FROM python:3.7.13
 
-COPY * /app/
+RUN mkdir -p /app/Modules
+
+COPY runserver.py /app/
+
+COPY requirements.txt /app/
+
+COPY Modules/* /app/Modules/
 
 WORKDIR /app
 
