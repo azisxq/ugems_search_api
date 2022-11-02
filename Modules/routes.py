@@ -20,6 +20,41 @@ def root():
 	return jsonify({'status': 'ok'}), 200
 
 
+@app.route('/token',methods=['POST','GET'])
+def token():
+	if request.method == 'POST':
+		try:
+			create_token()
+		except Exception as e:
+			print(e)
+			return jsonify({
+				'status': "problem with creating token"
+			}), 403
+		try:
+			tkn = get_token()
+		except Exception as e:
+			print(e)
+			return jsonify({
+				'status': "problem when get token"
+			}), 403
+		return jsonify({
+			'token': tkn,
+			'status': "ok"
+		}), 200
+	elif request.method == 'GET':
+		try:
+			tkn = get_token()
+		except Exception as e:
+			print(e)
+			return jsonify({
+				'status': "problem when get token"
+			}), 403
+		return jsonify({
+			'token': tkn,
+			'status': "ok"
+		}), 200
+
+
 @app.route('/search', methods=['GET'])
 def search():
 	query = utils.validate(
@@ -35,7 +70,7 @@ def search():
 			'status': 'token parameter is empty'
 		}), 412
 
-	tkn = get_token(token)
+	tkn = search_token(token)
 	if tkn is None:
 		return jsonify({
 			'status': 'incorrect input token'
@@ -50,7 +85,7 @@ def search():
 		result_dict = {}
 		result_dict['title'] = result['title'][0]
 		result_dict['content'] = result['content'][0]
-		result_dict['read_role'] = result['read_role'][0]
+		result_dict['read_role'] = result['read_role']
 		res.append(result_dict)
 	return jsonify({
 		'number of results': len(results),
