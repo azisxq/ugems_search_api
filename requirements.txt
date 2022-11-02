@@ -2,3 +2,4 @@ pandas==1.3.5
 pysolr==3.9.0
 Flask==2.1.2
 SQLAlchemy==1.4.39
+psycopg2==2.9.3
