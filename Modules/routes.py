@@ -61,10 +61,8 @@ def search():
 		request.args, 'query',
 		str, None
 	)
-	token = utils.validate(
-		request.args,'token',
-		str, None
-	)
+	
+	token = request.headers['token']
 	if token is None:
 		return jsonify({
 			'status': 'token parameter is empty'
