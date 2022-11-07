@@ -86,6 +86,14 @@ def search():
 		result_dict['title'] = result['title'][0]
 		result_dict['content'] = result['content'][0]
 		result_dict['read_role'] = result['read_role']
+		try:
+			result_dict['link'] = result['link'][0]
+		except:
+			result_dict['link'] = 'https://ugems.id/o/headless-delivery/v1.0/blog-postings/44887/rendered-content-by-display-page/test'
+		try:
+			result_dict['source'] = result['source'][0]
+		except:
+			result_dict['source'] = 'sharepoint'
 		res.append(result_dict)
 	return jsonify({
 		'number of results': len(results),
